@@ -51,7 +51,6 @@ namespace Shutt
             nt.BalloonTipTitle = "Shutt.";
             nt.BalloonTipText = "Можете использовать Shutt. в трее, дабы увидеть оставшееся время до выключения.(WIP)";
             nt.ShowBalloonTip(8);
-            //label6.Text = key.GetValue("trey").ToString();
             progressBar1.Visible = false;
             string PathToConfig = Environment.CurrentDirectory;
         }
@@ -315,11 +314,10 @@ namespace Shutt
                 Arguments = $"/c @echo off && cls && shutdown.exe {mode} {zarkO} /t {time} /d P:0:0",
                 FileName = "cmd"
             });
-            // sw.WriteLine("pause");
             // zarkO - /f - закрытие всего
             // time - /t - время
             // mode - /s,/h,/r - выключение и т.д.
-            // com - коммент
+            // com - коммент - не работает
         }
 
         private void отменитьВыключениеToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -373,14 +371,8 @@ namespace Shutt
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //MessageBox.Show("\nMade by Lenofag\n\nAll rights are not reserved.\n2019.", "About", MessageBoxButtons.OK, MessageBoxIcon.Asterisk, MessageBoxDefaultButton.Button1);
             AboutBox1 bx = new AboutBox1();
             bx.Show();
-        }
-        void lox()
-        {
-            opt Opt = new opt();
-            
         }
         string convert(int secs)
         {
@@ -390,7 +382,6 @@ namespace Shutt
             string res = $"{hours}:{mins}:{secs}";
             return res;
         }
-
         private void Main_FormClosed(object sender, FormClosedEventArgs e)
         {
             nt.Dispose();
