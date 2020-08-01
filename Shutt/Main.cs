@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.IO;
 using System.Diagnostics;
 using Microsoft.Win32;
+using System.Runtime.InteropServices;
 
 namespace Shutt
 {
@@ -54,12 +55,6 @@ namespace Shutt
             progressBar1.Visible = false;
             string PathToConfig = Environment.CurrentDirectory;
         }
-        public void main(opt f)
-        {
-            InitializeComponent();
-
-        }
-
         
         private void radioButton1_CheckedChanged(object sender, EventArgs e) // выключение
         {
