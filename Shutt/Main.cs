@@ -208,22 +208,19 @@ namespace Shutt
             hrs.Value = 0;
             timer1.Enabled = false;
             nt.Text = "Shutt.";
+            progressBar1.Value = 0;
 
         }
 
         private void вызватьShutdownexeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.Hide();
             var cmd = Process.Start(new ProcessStartInfo()
             {
                 Arguments = "/c echo @off && cls && shutdown.exe /i",
                 FileName = "cmd",
-                UseShellExecute = true
+                UseShellExecute = true,
+                WindowStyle = ProcessWindowStyle.Hidden
             });
-            cmd.Exited += (s, a) =>
-            {
-                this.Show();
-            };
         }
         private void timer1_Tick (object sender, EventArgs e)
         {
@@ -238,6 +235,16 @@ namespace Shutt
                         Arguments = "/c @echo off && shutdown.exe /h",
                         FileName = "cmd"
                     });
+                    progressBar1.Visible = false;
+                    timeV = 0;
+                    time = 0;
+                    label4.Visible = false;
+                    label5.Visible = false;
+                    secs.Value = 0;
+                    mnts.Value = 0;
+                    hrs.Value = 0;
+                    timer1.Enabled = false;
+                    nt.Text = "Shutt.";
                 }
                 else
                 {
@@ -251,7 +258,7 @@ namespace Shutt
                 TaskbarProgress.SetValue(this.Handle, taskvalue++, time);
                 label6.Text = progressBar1.Maximum.ToString();
                 timeV--;
-                nt.Text = "Shutt.\nДо выключения осталось: " + timeV;
+                nt.Text = "Shutt.\nДо выключения осталось: " + convert(timeV);
                 hubTime++;
                 if (time == 0)
                 {
@@ -270,7 +277,7 @@ namespace Shutt
             {
                 u++;
                 nt.BalloonTipText = "До " + locS[2] + " осталось 30 секунд!";
-                nt.ShowBalloonTip(8);
+                nt.ShowBalloonTip(5);
             }
             if (timeV < 10)
             {
